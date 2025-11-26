@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>我的掛號紀錄</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+<div class="container mt-5">
+
+    <h2 class="mb-4">我的掛號紀錄</h2>
+
+    {% if appointments %}
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>醫生</th>
+                <th>日期</th>
+                <th>時段</th>
+                <th>症狀</th>
+                <th>狀態</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for a in appointments %}
+            <tr>
+                <td>{{ a.doctor_name }}</td>
+                <td>{{ a.appt_date }}</td>
+                <td>{{ a.work_shift }}</td>
+                <td>{{ a.symptoms }}</td>
+                <td>{{ a.status }}</td>
+                <td>
+                    {% if a.status != 'Cancelled' %}
+                        <a href="/appointment/{{ a.appt_id }}/edit" class="btn btn-sm btn-primary">修改</a>
+                        <form action="/cancel/{{ a.appt_id }}" method="post" style="display:inline;">
+                            <button class="btn btn-sm btn-danger">取消</button>
+                        </form>
+                    {% else %}
+                        已取消
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>尚無預約紀錄。</p>
+    {% endif %}
+
+    <a href="/" class="btn btn-secondary mt-3">回首頁</a>
+
+</div>
+</body>
+</html>

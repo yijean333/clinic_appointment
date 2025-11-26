@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>預約掛號系統</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+
+<body class="bg-light">
+
+<div class="container mt-5">
+
+    <h1 class="text-center mb-4">預約掛號系統</h1>
+
+    <!-- 功能按鈕區塊 -->
+    <div class="row">
+
+        <!-- 初診掛號 -->
+        <div class="col-md-6 mb-3">
+            <div class="card p-3">
+                <h4>初診掛號</h4>
+                <p>第一次看診？先填寫基本資料。</p>
+                <a href="/new_patient" class="btn btn-primary">開始填寫</a>
+            </div>
+        </div>
+
+        <!-- 直接掛號 -->
+        <div class="col-md-6 mb-3">
+            <div class="card p-3">
+                <h4>直接預約</h4>
+                <p>輸入身分證字號 / 病歷號，選日期與時段。</p>
+                <a href="/appointment" class="btn btn-success">立即預約</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 醫生上班時間 -->
+    <div class="card p-3 mt-4">
+        <h4>醫生上班時間</h4>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>醫生</th>
+                    <th>日期</th>
+                    <th>時段</th>
+                    <th>已預約人數</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in schedule %}
+                <tr>
+                    <td>{{ row.doctor_name }}</td>
+                    <td>{{ row.work_date }}</td>
+                    <td>{{ row.work_shift }}</td>
+                    <td>{{ row.booked_count }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+
+    <!-- 查詢預約紀錄 -->
+    <div class="card p-3 mt-4">
+        <h4>查詢掛號紀錄</h4>
+        <form method="GET" action="/my_appointments">
+            <div class="mb-2">
+                <label class="form-label">身分證字號 / 病歷號</label>
+                <input type="text" class="form-control" name="pid" required>
+            </div>
+            <button class="btn btn-secondary mt-2">查詢</button>
+        </form>
+    </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>醫師每日班表</h2>
+<table border="1">
+<tr>
+    <th>日期</th><th>班次</th><th>病人</th><th>預約狀態</th>
+</tr>
+{% for s in schedule %}
+<tr>
+    <td>{{ s.work_date }}</td>
+    <td>{{ s.work_shift }}</td>
+    <td>{{ s.patient_name or '空班' }}</td>
+    <td>{{ s.appointment_status or '-' }}</td>
+</tr>
+{% endfor %}
+</table>
+{% endblock %}

@@ -23,27 +23,22 @@ clinic_appointment/
 ## 安裝與啟動  
 
 1. Clone 此專案：  
-   ```bash
+
    git clone https://github.com/yijean333/clinic_appointment.git
    cd clinic_appointment
-````
 
 2. 建立虛擬環境並安裝依賴：
 
-   ```bash
    python -m venv venv
    source venv/bin/activate   # Linux/Mac  
    venv\Scripts\activate      # Windows  
    pip install -r requirements.txt
-   ```
 
 3. 修改 `config.py`，設定好 SQL Server 的 DSN／帳號密碼／資料庫名稱
 
 4. 啟動 Flask：
 
-   ```bash
    python app.py
-   ```
 
    然後在瀏覽器打開 `http://127.0.0.1:5000/`
 
